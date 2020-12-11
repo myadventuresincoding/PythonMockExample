@@ -1,5 +1,4 @@
-import unittest, datetime
-import my_module
+import unittest
 from my_module import MyClass, SomeOtherClass
 from mock import patch, Mock
 
@@ -7,7 +6,7 @@ from mock import patch, Mock
 class SomeOtherClassTest(unittest.TestCase):
 
     # To mock a method in a class to return a specific value use @patch.object.
-    @patch.object(my_module.MyClass, 'my_method')
+    @patch.object(MyClass, 'my_method')
     def test_my_method_shouldReturnTrue_whenMyMethodReturnsSomeValue(self, mock_my_method):
         # setup
         mock_my_method.return_value = True
@@ -51,7 +50,7 @@ class SomeOtherClassTest(unittest.TestCase):
     # To mock an entire class with @patch and still set the return value of a method in that class,
     # grab the instance of the mock object’s return value and set the method’s return value on the instance.
     # There is a section on the patch page explaining how to do this.
-    @patch.object(my_module.MyClass, 'my_method')
+    @patch.object(MyClass, 'my_method')
     def test_my_method_shouldReturnMultipleValues_whenMyMethodReturnsSomeValue(self, mock_my_method):
         # setup
         list_of_return_values = [True, False, False]
