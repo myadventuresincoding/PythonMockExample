@@ -21,7 +21,7 @@ class SomeOtherClassTest(unittest.TestCase):
 
     # To mock a method in a class with @patch.object but return a different value each time it is called,
     # use side_effect. Side effect allows you to define a custom method and have that method called each time
-    # your mock method is called. The value returned from this method will be used as the return value from
+    # your mock method is called. The value returned from this method will be used as the return value for
     # your mock method.
     @patch('my_module.MyClass')
     def test_my_method_shouldCallMyClassMethodMyMethod_whenSomeOtherClassMethodIsCalled(self, mock_my_class):
