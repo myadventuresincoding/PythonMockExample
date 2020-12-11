@@ -18,10 +18,7 @@ class SomeOtherClassTest(unittest.TestCase):
         # assert
         self.assertTrue(result)
 
-    # To mock a method in a class with @patch.object but return a different value each time it is called,
-    # use side_effect. Side effect allows you to define a custom method and have that method called each time
-    # your mock method is called. The value returned from this method will be used as the return value for
-    # your mock method.
+    # To mock an entire class to test interactions with that class use @patch.
     @patch('my_module.MyClass')
     def test_my_method_shouldCallMyClassMethodMyMethod_whenSomeOtherClassMethodIsCalled(self, mock_my_class):
         # setup
@@ -33,7 +30,9 @@ class SomeOtherClassTest(unittest.TestCase):
         # assert
         self.assertTrue(mock_my_class.called)
 
-    # To mock an entire class to test interactions with that class use @patch.
+    # To mock an entire class with @patch and still set the return value of a method in that class,
+    # grab the instance of the mock object’s return value and set the method’s return value on the instance.
+    # There is a section on the patch page explaining how to do this.
     @patch('my_module.MyClass')
     def test_my_method_shouldReturnTrue_whenSomeOtherClassMethodIsCalledAndAReturnValueIsSet(self, mock_my_class):
         # setup
@@ -47,9 +46,10 @@ class SomeOtherClassTest(unittest.TestCase):
         # assert
         self.assertTrue(result)
 
-    # To mock an entire class with @patch and still set the return value of a method in that class,
-    # grab the instance of the mock object’s return value and set the method’s return value on the instance.
-    # There is a section on the patch page explaining how to do this.
+    # To mock a method in a class with @patch.object but return a different value each time it is called,
+    # use side_effect. Side effect allows you to define a custom method and have that method called each time
+    # your mock method is called. The value returned from this method will be used as the return value for
+    # your mock method.
     @patch.object(MyClass, 'my_method')
     def test_my_method_shouldReturnMultipleValues_whenMyMethodReturnsSomeValue(self, mock_my_method):
         # setup
