@@ -60,13 +60,17 @@ class SomeOtherClassTest(unittest.TestCase):
 
         mock_my_method.side_effect = side_effect
 
-        # execute
         some_other_class = SomeOtherClass()
 
+        # execute
+        result_one = some_other_class.method_under_test()
+        result_two = some_other_class.method_under_test()
+        result_three = some_other_class.method_under_test()
+
         # assert
-        self.assertFalse(some_other_class.method_under_test())
-        self.assertFalse(some_other_class.method_under_test())
-        self.assertTrue(some_other_class.method_under_test())
+        self.assertFalse(result_one)
+        self.assertFalse(result_two)
+        self.assertTrue(result_three)
 
 
 if __name__ == '__main__':
