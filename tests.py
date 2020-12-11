@@ -7,7 +7,7 @@ class SomeOtherClassTest(unittest.TestCase):
 
     # To mock a method in a class to return a specific value use @patch.object.
     @patch.object(MyClass, 'my_method')
-    def test_my_method_shouldReturnTrue_whenMyMethodReturnsSomeValue(self, mock_my_method):
+    def test_shouldReturnValue_whenMethodIsMocked(self, mock_my_method):
         # setup
         mock_my_method.return_value = True
         some_other_class = SomeOtherClass()
@@ -20,7 +20,7 @@ class SomeOtherClassTest(unittest.TestCase):
 
     # To mock an entire class to test interactions with that class use @patch.
     @patch('my_module.MyClass')
-    def test_my_method_shouldCallMyClassMethodMyMethod_whenSomeOtherClassMethodIsCalled(self, mock_my_class):
+    def test_shouldRecordMethodWasCalled_whenClassIsMocked(self, mock_my_class):
         # setup
         some_other_class = SomeOtherClass()
 
@@ -34,7 +34,7 @@ class SomeOtherClassTest(unittest.TestCase):
     # grab the instance of the mock object’s return value and set the method’s return value on the instance.
     # There is a section on the patch page explaining how to do this.
     @patch('my_module.MyClass')
-    def test_my_method_shouldReturnTrue_whenSomeOtherClassMethodIsCalledAndAReturnValueIsSet(self, mock_my_class):
+    def test_shouldReturnValue_whenReturnValueIsSetOnMethodOfMockedClass(self, mock_my_class):
         # setup
         mc = mock_my_class.return_value
         mc.my_method.return_value = True
@@ -51,7 +51,7 @@ class SomeOtherClassTest(unittest.TestCase):
     # your mock method is called. The value returned from this method will be used as the return value for
     # your mock method.
     @patch.object(MyClass, 'my_method')
-    def test_my_method_shouldReturnMultipleValues_whenMyMethodReturnsSomeValue(self, mock_my_method):
+    def test_shouldReturnANewValueEachTime_whenMethodIsMockedUsingSideEffect(self, mock_my_method):
         # setup
         list_of_return_values = [True, False, False]
 
