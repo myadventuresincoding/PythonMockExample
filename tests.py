@@ -8,26 +8,26 @@ class SomeOtherClassTest(unittest.TestCase):
     # To mock a method in a class to return a specific value use @patch.object.
     @patch.object(MyClass, 'my_method')
     def test_shouldReturnValue_whenMethodIsMocked(self, mock_my_method):
-        # setup
+        # Arrange
         mock_my_method.return_value = True
         some_other_class = SomeOtherClass()
 
-        # execute
+        # Act
         result = some_other_class.method_under_test()
 
-        # assert
+        # Assert
         self.assertTrue(result)
 
     # To mock an entire class to test interactions with that class use @patch.
     @patch('my_module.MyClass')
     def test_shouldRecordMethodWasCalled_whenClassIsMocked(self, mock_my_class):
-        # setup
+        # Arrange
         some_other_class = SomeOtherClass()
 
-        # execute
+        # Act
         some_other_class.method_under_test()
 
-        # assert
+        # Assert
         self.assertTrue(mock_my_class.called)
 
     # To mock an entire class with @patch and still set the return value of a method in that class,
@@ -35,15 +35,15 @@ class SomeOtherClassTest(unittest.TestCase):
     # There is a section on the patch page explaining how to do this.
     @patch('my_module.MyClass')
     def test_shouldReturnValue_whenReturnValueIsSetOnMethodOfMockedClass(self, mock_my_class):
-        # setup
+        # Arrange
         mc = mock_my_class.return_value
         mc.my_method.return_value = True
         some_other_class = SomeOtherClass()
 
-        # execute
+        # Act
         result = some_other_class.method_under_test()
 
-        # assert
+        # Assert
         self.assertTrue(result)
 
     # To mock a method in a class with @patch.object but return a different value each time it is called,
@@ -52,7 +52,7 @@ class SomeOtherClassTest(unittest.TestCase):
     # your mock method.
     @patch.object(MyClass, 'my_method')
     def test_shouldReturnANewValueEachTime_whenMethodIsMockedUsingSideEffect(self, mock_my_method):
-        # setup
+        # Arrange
         list_of_return_values = [True, False, False]
 
         def side_effect():
@@ -62,12 +62,12 @@ class SomeOtherClassTest(unittest.TestCase):
 
         some_other_class = SomeOtherClass()
 
-        # execute
+        # Act
         result_one = some_other_class.method_under_test()
         result_two = some_other_class.method_under_test()
         result_three = some_other_class.method_under_test()
 
-        # assert
+        # Assert
         self.assertFalse(result_one)
         self.assertFalse(result_two)
         self.assertTrue(result_three)
